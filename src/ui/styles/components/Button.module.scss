@@ -1,0 +1,30 @@
+.container {
+    padding: 0.5rem 1rem;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.15rem;
+
+    border: none;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+
+    cursor: pointer;
+
+    &.primary {
+        font-weight: bold;
+        color: white;
+        background-color: mediumseagreen;
+
+        &:hover {
+            filter: brightness(1.15);
+        }
+    }
+
+    svg {
+        margin-right: 0.5rem;
+    }
+}

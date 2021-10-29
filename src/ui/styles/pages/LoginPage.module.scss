@@ -1,0 +1,57 @@
+.container {
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: mediumseagreen;
+
+    form {
+        padding: 2.5rem;
+        min-width: 400px;
+
+        border-radius: 3px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+        background-color: white;
+
+        legend {
+            font-size: 3rem;
+
+            margin-bottom: 2rem;
+        }
+
+        > div {
+            display: flex;
+            flex-direction: column;
+
+            &:not(:first-of-type) {
+                margin-top: 0.75rem;
+            }
+
+            label {
+                margin-bottom: 0.25rem;
+            }
+
+            input {
+                padding: 0.5rem;
+
+                font-size: 1.05rem;
+
+                border: 2px solid transparent;
+                border-radius: 3px;
+                box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+                outline: none;
+
+                &:focus {
+                    border: 2px solid mediumseagreen;
+                }
+            }
+        }
+
+        button {
+            margin-top: 1.5rem;
+        }
+    }
+}

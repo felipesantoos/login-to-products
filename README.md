@@ -5,6 +5,10 @@
 ![Print 4](./src/assets/images/4.png)
 ![Print 5](./src/assets/images/5.png)
 ![Print 6](./src/assets/images/6.png)
+![Print 7](./src/assets/images/7.png)
+![Print 8](./src/assets/images/8.png)
+![Print 9](./src/assets/images/9.png)
+![Print 10](./src/assets/images/10.png)
 
 # Getting Started with Create React App
 

@@ -1,0 +1,28 @@
+.container {
+    height: 100%;
+
+    padding: 4rem;
+
+    background-color: mediumseagreen;
+
+    > button {
+        width: max-content;
+
+        margin-bottom: 1rem;
+    }
+
+    .content {
+        padding: 1rem;
+
+        background-color: white;
+        border-radius: 3px;
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        span {
+            font-size: 1.5rem;
+        }
+    }
+}

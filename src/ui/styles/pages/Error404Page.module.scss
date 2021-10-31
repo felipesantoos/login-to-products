@@ -1,0 +1,21 @@
+.container {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: mediumseagreen;
+
+    h1 {
+        font-size: 5rem;
+        color: white;
+    }
+
+    button {
+        width: fit-content;
+        min-width: 350px;
+        margin-top: 1rem;
+    }
+}

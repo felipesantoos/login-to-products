@@ -6,15 +6,17 @@ interface Props {
     children: ReactNode;
     styleType?: "normal" | "primary";
     type?: "submit" | "button" | "reset";
+    onClick?(): void;
 }
 
-function Button({ children, styleType = "normal", type }: Props) {
+function Button({ children, styleType = "normal", type, onClick }: Props) {
     const className = `${styles.container} ${styles[styleType]}`;
 
     return (
         <button
             className={className}
             type={type}
+            onClick={onClick}
         >
             {children}
         </button>

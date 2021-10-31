@@ -1,13 +1,31 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import Button from "../components/Button";
 
 import styles from "../styles/pages/LoginPage.module.scss";
 
 function LoginPage() {
+    const appHistory = useHistory();
 
     function submit(event: React.FormEvent) {
         event.preventDefault();
-        console.log("Fazer login");
+
+        const inputUsername = document.getElementById("username") as HTMLInputElement;
+        const inputPassword = document.getElementById("password") as HTMLInputElement;
+
+        if (inputUsername && inputPassword) {
+            const username = inputUsername.value;
+            const password = inputPassword.value;
+
+            if (username.length === 0) {
+                alert("Nome de usuário inválido!");
+            } else if (password.length < 8) {
+                alert("Senha inválida! (muito curta)");
+            } else {
+                appHistory.push("/products");
+            }
+        }
     }
 
     return (

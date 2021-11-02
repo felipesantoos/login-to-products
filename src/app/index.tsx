@@ -8,8 +8,8 @@ import AuthProvider from '../ui/contexts/AuthContext';
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
         <Switch>
           <Route path="/login" render={() => <LoginPage />} />
           <Route path="/products" exact render={() => <ProductsPage />} />
@@ -19,8 +19,8 @@ function App() {
 
           <Route path="/*" render={() => <Error404Page />} />
         </Switch>
-      </BrowserRouter>
-    </AuthProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

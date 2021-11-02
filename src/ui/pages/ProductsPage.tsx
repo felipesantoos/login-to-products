@@ -13,8 +13,6 @@ function ProductsPage() {
     const appHistory = useHistory();
     const authContext = useContext(AuthContext);
 
-    console.log(authContext.data);
-
     const products: Product[] = [
         {
             id: 1,

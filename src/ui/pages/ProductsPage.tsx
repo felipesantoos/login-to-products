@@ -1,12 +1,19 @@
+import { useContext } from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
+
 import Product from "../../core/models/Product";
 
 import Button from "../components/Button";
+
 import styles from "../styles/pages/ProductsPage.module.scss";
 
 function ProductsPage() {
     const appHistory = useHistory();
+    const authContext = useContext(AuthContext);
+
+    console.log(authContext.data);
 
     const products: Product[] = [
         {

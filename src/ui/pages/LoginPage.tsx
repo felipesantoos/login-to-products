@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 import Button from "../components/Button";
 
@@ -7,6 +8,7 @@ import styles from "../styles/pages/LoginPage.module.scss";
 
 function LoginPage() {
     const appHistory = useHistory();
+    const authContext = useContext(AuthContext);
 
     function submit(event: React.FormEvent) {
         event.preventDefault();
@@ -18,12 +20,12 @@ function LoginPage() {
             const username = inputUsername.value;
             const password = inputPassword.value;
 
-            if (username.length === 0) {
-                alert("Nome de usuário inválido!");
-            } else if (password.length < 8) {
-                alert("Senha inválida! (muito curta)");
-            } else {
+            const isSuccess = authContext.login({ username, password });
+
+            if (isSuccess) {
                 appHistory.push("/products");
+            } else {
+                alert("Dados inválidos! Verifique seu nome de usuário e/ou senha!");
             }
         }
     }

@@ -1,7 +1,11 @@
-import { useContext } from "react";
-import { AiOutlineInfoCircle } from "react-icons/ai";
+import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+
+import { AiOutlineInfoCircle } from "react-icons/ai";
+import { ImExit } from "react-icons/im";
+
 import { AuthContext } from "../contexts/AuthContext";
+import { ProductsContext } from "../contexts/ProductsContext";
 
 import Product from "../../core/models/Product";
 
@@ -12,47 +16,32 @@ import styles from "../styles/pages/ProductsPage.module.scss";
 function ProductsPage() {
     const appHistory = useHistory();
     const authContext = useContext(AuthContext);
+    const productsContext = useContext(ProductsContext);
 
-    const products: Product[] = [
-        {
-            id: 1,
-            name: "Feijão",
-            value: 3,
-        },
-        {
-            id: 2,
-            name: "Arroz",
-            value: 5,
-        },
-        {
-            id: 3,
-            name: "Macarrão",
-            value: 3,
-        },
-        {
-            id: 4,
-            name: "Carne",
-            value: 20,
-        },
-        {
-            id: 5,
-            name: "Danone",
-            value: 3.50,
-        },
-    ];
+    useEffect(() => {
+        productsContext.fetch();
+    }, []);
 
     function redirectToProductDetails(item: Product) {
         appHistory.push(`/products/${item.id}`, item);
     }
 
+    function logout() {
+        authContext.logout();
+    }
+
     return (
         <div className={styles.container}>
+            <Button onClick={logout}>
+                <ImExit />
+                Logout
+            </Button>
             <div className={styles.content}>
                 <header>
                     <h2>Meus produtos</h2>
                 </header>
                 <main>
-                    {products.map((item) => {
+                    {productsContext.data?.map((item) => {
                         return (
                             <div key={item.id} className={styles.card}>
                                 <h3>{item.name}</h3>

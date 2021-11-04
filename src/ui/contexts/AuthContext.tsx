@@ -6,6 +6,7 @@ import User from "../../core/models/User";
 interface AuthContextProps {
     data: undefined | User;
     login(credentials: AuthCredentialsDTO): boolean;
+    logout(): void;
 }
 
 interface AuthProviderProps {
@@ -30,6 +31,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         } else if (appHistory.location.pathname !== "/login") {
             appHistory.push("/login");
         }
+        // eslint-disable-next-line
     }, []);
 
     function login(credentials: AuthCredentialsDTO): boolean {
@@ -51,8 +53,13 @@ function AuthProvider({ children }: AuthProviderProps) {
         return false;
     }
 
+    function logout() {
+        localStorage.removeItem("user");
+        appHistory.push("/login");
+    }
+
     return (
-        <AuthContext.Provider value={{ data, login }}>
+        <AuthContext.Provider value={{ data, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

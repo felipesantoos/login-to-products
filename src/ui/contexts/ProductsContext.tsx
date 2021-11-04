@@ -51,9 +51,11 @@ function ProductsProvider({ children }: ProductsProviderProps) {
     function favoriteProduct(id: number) {
         const exists = favoritedProducts.indexOf(id) >= 0;
 
-        if (exists) return;
-
-        setFavoritedProducts((state) => [...state, id]);
+        if (exists) {
+            setFavoritedProducts(favoritedProducts.filter(item => item !== id));
+        } else {
+            setFavoritedProducts((state) => [...state, id]);
+        }
     }
 
     return (

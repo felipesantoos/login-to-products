@@ -1,10 +1,10 @@
 .container {
     height: 100%;
-    padding: 4rem;
+    padding: 1rem 4rem 6rem;
 
     background-color: mediumseagreen;
 
-    button {
+    > button {
         max-width: max-content;
 
         margin-bottom: 1rem;
@@ -43,15 +43,35 @@
 
             .card {
                 min-width: 250px;
+                height: max-content;
 
                 margin-bottom: 1rem;
                 padding: 0.75rem 1.5rem;
+
+                display: flex;
+                flex-direction: column;
+                position: relative;
 
                 border-radius: 3px;
                 box-shadow: 0 0 3px rgba(158, 150, 150, 0.8);
 
                 &:not(:last-of-type) {
                     margin-right: 1rem;
+                }
+
+                .favoriteAction {                    
+                    position: absolute;
+                    top: 0.75rem;
+                    right: 0.75rem;
+
+                    svg {
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                    }
+
+                    .aiFillHeart {
+                        fill: crimson;
+                    }
                 }
 
                 h3 {
@@ -63,7 +83,8 @@
                 }
 
                 button {
-                    margin-top: 1rem;
+                    width: auto;
+                    margin: 1rem 0;
                 }
             }
         }

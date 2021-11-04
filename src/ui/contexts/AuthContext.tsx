@@ -24,15 +24,17 @@ function AuthProvider({ children }: AuthProviderProps) {
 
         if (userCached !== null) {
             setData(JSON.parse(userCached));
+        }
+    }, []);
 
-            if (appHistory.location.pathname === "/login") {
-                appHistory.push("/products");
-            }
-        } else if (appHistory.location.pathname !== "/login") {
+    useEffect(() => {
+        if (data && appHistory.location.pathname === "/login") {
+            appHistory.push("/products");
+        } else if (!data && appHistory.location.pathname !== "/login") {
             appHistory.push("/login");
         }
         // eslint-disable-next-line
-    }, []);
+    }, [data]);
 
     function login(credentials: AuthCredentialsDTO): boolean {
         if (credentials.username.length !== 0 && credentials.password.length >= 8) {
@@ -55,7 +57,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
     function logout() {
         localStorage.removeItem("user");
-        appHistory.push("/login");
+        setData(undefined);
     }
 
     return (

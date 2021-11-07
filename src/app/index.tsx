@@ -13,7 +13,7 @@ function App() {
       <AuthProvider>
         <ProductsProvider>
           <Switch>
-            <Route path="/login" render={() => <LoginPage />} />
+            <Route path="/login" exact render={() => <LoginPage />} />
             <Route path="/products" exact render={() => <ProductsPage />} />
             <Route path="/products/:id" render={() => <ProductDetaisPage />} />
 

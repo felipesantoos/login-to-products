@@ -1,7 +1,8 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import AuthCredentialsDTO from "../../core/dto/AuthCredentialsDTO";
 import User from "../../core/models/User";
+import Routes from "../../utils/routes";
 
 interface AuthContextProps {
     data: undefined | User;
@@ -31,12 +32,14 @@ function AuthProvider({ children }: AuthProviderProps) {
         if (data && appHistory.location.pathname === "/login") {
             appHistory.push("/products");
         } else if (!data && appHistory.location.pathname !== "/login") {
-            appHistory.push("/login");
+            if (Routes.includes(appHistory.location.pathname)) {
+                appHistory.push("/login");
+            }
         }
         // eslint-disable-next-line
     }, [data]);
 
-    function login(credentials: AuthCredentialsDTO): boolean {
+    const login = useCallback((credentials: AuthCredentialsDTO): boolean => {
         if (credentials.username.length !== 0 && credentials.password.length >= 8) {
             const newData = {
                 id: 1,
@@ -53,12 +56,12 @@ function AuthProvider({ children }: AuthProviderProps) {
         }
 
         return false;
-    }
+    }, []);
 
-    function logout() {
+    const logout = useCallback(() => {
         localStorage.removeItem("user");
         setData(undefined);
-    }
+    }, [data]);
 
     return (
         <AuthContext.Provider value={{ data, login, logout }}>

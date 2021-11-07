@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useCallback, useState } from "react";
 import Product from "../../core/models/Product";
 
 interface ProductsContextProps {
@@ -18,7 +18,7 @@ function ProductsProvider({ children }: ProductsProviderProps) {
     const [data, setData] = useState<Product[]>();
     const [favoritedProducts, setFavoritedProducts] = useState<number[]>([]);
 
-    function fetch() {
+    const fetch = useCallback(() => {
         setData([
             {
                 id: 1,
@@ -46,9 +46,9 @@ function ProductsProvider({ children }: ProductsProviderProps) {
                 value: 3.50,
             },
         ]);
-    }
+    }, []);
 
-    function favoriteProduct(id: number) {
+    const favoriteProduct = useCallback((id: number) => {
         const exists = favoritedProducts.indexOf(id) >= 0;
 
         if (exists) {
@@ -56,7 +56,7 @@ function ProductsProvider({ children }: ProductsProviderProps) {
         } else {
             setFavoritedProducts((state) => [...state, id]);
         }
-    }
+    }, [favoritedProducts]);
 
     return (
         <ProductsContext.Provider value={

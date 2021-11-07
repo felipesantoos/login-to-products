@@ -16,7 +16,10 @@ function ProductDetaisPage() {
     const product = appHistory.location.state as Product;
     const productsContext = useContext(ProductsContext);
 
-    if (!product) return (<LoginPage />);
+    if (!product) {
+        appHistory.push("/login");
+        return null;
+    }
 
     let favoriteComponent;
 

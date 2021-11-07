@@ -46,7 +46,6 @@ function ProductsPage() {
                 <main>
                     {productsContext.data?.map((item) => {
                         const exists = (productsContext.favoritedProducts?.indexOf(item.id) ?? -1) >= 0;
-
                         let favoriteComponent;
 
                         if (exists) {

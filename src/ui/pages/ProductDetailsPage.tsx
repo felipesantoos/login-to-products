@@ -17,7 +17,7 @@ function ProductDetaisPage() {
     const productsContext = useContext(ProductsContext);
 
     if (!product) {
-        appHistory.push("/login");
+        appHistory.push("/products");
         return null;
     }
 
@@ -33,12 +33,12 @@ function ProductDetaisPage() {
             favoriteComponent = (
                 <AiFillHeart
                     className={styles.aiFillHeart}
-                    onClick={() => handleFavoriteProduct()}
+                    onClick={handleFavoriteProduct}
                 />
             );
         } else {
             favoriteComponent = (
-                <AiOutlineHeart onClick={() => handleFavoriteProduct()} />
+                <AiOutlineHeart onClick={handleFavoriteProduct} />
             );
         }
     }
